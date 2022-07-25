@@ -1,10 +1,11 @@
+import 'package:fireapp/auth/api_form.dart';
 import 'package:fireapp/auth/auth_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
+
+  static String route = '/auth';
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class AuthScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(height: 8),
-              AuthForm(),
+              const AuthForm(),
+              const SizedBox(height: 24),
+              const ApiForm(),
             ],
           ),
         ),

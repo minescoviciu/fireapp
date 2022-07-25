@@ -72,7 +72,7 @@ class _AuthFormState extends State<AuthForm> {
             ),
             const SizedBox(height: 10),
             if (_isLoading)
-                  CircularProgressIndicator()
+                  const CircularProgressIndicator()
             else
               SizedBox(
                 width: double.infinity,
