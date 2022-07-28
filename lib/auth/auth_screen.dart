@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
-  static String route = '/auth';
+  static Route route() {
+    return MaterialPageRoute<void>(
+      builder: (_) => AuthScreen(),
+    );
+  }
+
+  static String routePath = '/auth';
 
   @override
   Widget build(BuildContext context) {
