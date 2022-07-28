@@ -20,8 +20,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  AuthRepository _authRepository;
-  UserRepository _userRepository;
+  final AuthRepository _authRepository;
+  final UserRepository _userRepository;
   late StreamSubscription<AuthStatus> _authStatusSubscription;
 
   void _onAuthStatusChanged(

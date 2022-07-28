@@ -1,4 +1,3 @@
-import 'package:fireapp/auth/auth_provider.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../auth_repository.dart';
 import './auth_bloc.dart';

@@ -1,13 +1,10 @@
-import 'package:fireapp/auth/auth_provider.dart';
 import 'package:fireapp/auth/auth_repository.dart';
-import 'package:fireapp/auth/auth_screen.dart';
 import 'package:fireapp/auth/bloc/auth_state.dart';
-import 'package:fireapp/common/endpoints.dart';
+import 'package:fireapp/login/login_screen.dart';
 import 'package:fireapp/dashboard/dashboard_screen.dart';
 import 'package:fireapp/user/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'auth/bloc/auth_bloc.dart';
 
 import 'splash/splash_screen.dart';
@@ -56,9 +53,14 @@ class _AppScreenState extends State<AppScreen> {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: (_) => SplashScreen.route(),
+      navigatorKey: _navigatorKey,
       builder: (context, child) {
         return BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
+            _navigator.pushAndRemoveUntil<void>(
+              DashboardScreen.route(),
+              (route) => false,
+            );
             switch (state.status) {
               case AuthStatus.authenticated:
                 _navigator.pushAndRemoveUntil<void>(
@@ -68,7 +70,7 @@ class _AppScreenState extends State<AppScreen> {
                 break;
               case AuthStatus.unauthenticated:
                 _navigator.pushAndRemoveUntil<void>(
-                  AuthScreen.route(),
+                  LoginScreen.route(),
                   (route) => false,
                 );
                 break;
@@ -76,6 +78,7 @@ class _AppScreenState extends State<AppScreen> {
                 break;
             }
           },
+          child: child,
         );
       },
     );

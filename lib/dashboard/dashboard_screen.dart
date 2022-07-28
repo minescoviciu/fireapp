@@ -13,9 +13,11 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "Dashboard",
-      style: Theme.of(context).textTheme.headline4,
+    return Scaffold(
+      body: Text(
+        "Dashboard",
+        style: Theme.of(context).textTheme.headline4,
+      ),
     );
   }
 }
