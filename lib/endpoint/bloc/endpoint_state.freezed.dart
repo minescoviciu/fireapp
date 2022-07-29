@@ -18,9 +18,11 @@ class _$EndpointStateTearOff {
 
   _EndpointState call(
       {FormzStatus status = FormzStatus.pure,
-      Endpoint endpoint = const Endpoint.pure()}) {
+      EndpointInput endpointInput = const EndpointInput.pure(),
+      Endpoint endpoint = const Endpoint()}) {
     return _EndpointState(
       status: status,
+      endpointInput: endpointInput,
       endpoint: endpoint,
     );
   }
@@ -32,6 +34,7 @@ const $EndpointState = _$EndpointStateTearOff();
 /// @nodoc
 mixin _$EndpointState {
   FormzStatus get status => throw _privateConstructorUsedError;
+  EndpointInput get endpointInput => throw _privateConstructorUsedError;
   Endpoint get endpoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -44,7 +47,10 @@ abstract class $EndpointStateCopyWith<$Res> {
   factory $EndpointStateCopyWith(
           EndpointState value, $Res Function(EndpointState) then) =
       _$EndpointStateCopyWithImpl<$Res>;
-  $Res call({FormzStatus status, Endpoint endpoint});
+  $Res call(
+      {FormzStatus status, EndpointInput endpointInput, Endpoint endpoint});
+
+  $EndpointCopyWith<$Res> get endpoint;
 }
 
 /// @nodoc
@@ -59,6 +65,7 @@ class _$EndpointStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? endpointInput = freezed,
     Object? endpoint = freezed,
   }) {
     return _then(_value.copyWith(
@@ -66,11 +73,22 @@ class _$EndpointStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      endpointInput: endpointInput == freezed
+          ? _value.endpointInput
+          : endpointInput // ignore: cast_nullable_to_non_nullable
+              as EndpointInput,
       endpoint: endpoint == freezed
           ? _value.endpoint
           : endpoint // ignore: cast_nullable_to_non_nullable
               as Endpoint,
     ));
+  }
+
+  @override
+  $EndpointCopyWith<$Res> get endpoint {
+    return $EndpointCopyWith<$Res>(_value.endpoint, (value) {
+      return _then(_value.copyWith(endpoint: value));
+    });
   }
 }
 
@@ -81,7 +99,11 @@ abstract class _$EndpointStateCopyWith<$Res>
           _EndpointState value, $Res Function(_EndpointState) then) =
       __$EndpointStateCopyWithImpl<$Res>;
   @override
-  $Res call({FormzStatus status, Endpoint endpoint});
+  $Res call(
+      {FormzStatus status, EndpointInput endpointInput, Endpoint endpoint});
+
+  @override
+  $EndpointCopyWith<$Res> get endpoint;
 }
 
 /// @nodoc
@@ -98,6 +120,7 @@ class __$EndpointStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? endpointInput = freezed,
     Object? endpoint = freezed,
   }) {
     return _then(_EndpointState(
@@ -105,6 +128,10 @@ class __$EndpointStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      endpointInput: endpointInput == freezed
+          ? _value.endpointInput
+          : endpointInput // ignore: cast_nullable_to_non_nullable
+              as EndpointInput,
       endpoint: endpoint == freezed
           ? _value.endpoint
           : endpoint // ignore: cast_nullable_to_non_nullable
@@ -115,19 +142,24 @@ class __$EndpointStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_EndpointState implements _EndpointState {
-  _$_EndpointState(
-      {this.status = FormzStatus.pure, this.endpoint = const Endpoint.pure()});
+  const _$_EndpointState(
+      {this.status = FormzStatus.pure,
+      this.endpointInput = const EndpointInput.pure(),
+      this.endpoint = const Endpoint()});
 
   @JsonKey(defaultValue: FormzStatus.pure)
   @override
   final FormzStatus status;
-  @JsonKey(defaultValue: const Endpoint.pure())
+  @JsonKey(defaultValue: const EndpointInput.pure())
+  @override
+  final EndpointInput endpointInput;
+  @JsonKey(defaultValue: const Endpoint())
   @override
   final Endpoint endpoint;
 
   @override
   String toString() {
-    return 'EndpointState(status: $status, endpoint: $endpoint)';
+    return 'EndpointState(status: $status, endpointInput: $endpointInput, endpoint: $endpoint)';
   }
 
   @override
@@ -136,6 +168,9 @@ class _$_EndpointState implements _EndpointState {
         (other is _EndpointState &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.endpointInput, endpointInput) ||
+                const DeepCollectionEquality()
+                    .equals(other.endpointInput, endpointInput)) &&
             (identical(other.endpoint, endpoint) ||
                 const DeepCollectionEquality()
                     .equals(other.endpoint, endpoint)));
@@ -145,6 +180,7 @@ class _$_EndpointState implements _EndpointState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(endpointInput) ^
       const DeepCollectionEquality().hash(endpoint);
 
   @JsonKey(ignore: true)
@@ -154,11 +190,15 @@ class _$_EndpointState implements _EndpointState {
 }
 
 abstract class _EndpointState implements EndpointState {
-  factory _EndpointState({FormzStatus status, Endpoint endpoint}) =
-      _$_EndpointState;
+  const factory _EndpointState(
+      {FormzStatus status,
+      EndpointInput endpointInput,
+      Endpoint endpoint}) = _$_EndpointState;
 
   @override
   FormzStatus get status => throw _privateConstructorUsedError;
+  @override
+  EndpointInput get endpointInput => throw _privateConstructorUsedError;
   @override
   Endpoint get endpoint => throw _privateConstructorUsedError;
   @override

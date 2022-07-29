@@ -1,22 +1,18 @@
-import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum EndpointValidationError {
-  empty,
-  notAnUrl,
-}
+part 'endpoint.freezed.dart';
 
-class Endpoint extends FormzInput<String, EndpointValidationError> {
-  const Endpoint.pure() : super.pure('');
-  const Endpoint.dirty([String value = '']) : super.dirty(value);
+@freezed
+class Endpoint with _$Endpoint {
+  const Endpoint._();
 
-  @override
-  EndpointValidationError? validator(String? value) {
-    if (value!.isEmpty) {
-      return EndpointValidationError.empty;
-    }
-    if (!value.startsWith('http')) {
-      return EndpointValidationError.notAnUrl;
-    }
-    return null;
-  }
+  const factory Endpoint([
+    @Default('https://demo.firefly-iii.org') String baseUri,
+  ]) = _Endpoint;
+
+  Uri get authorization => Uri.parse("$baseUri/oauth/authorize");
+
+  Uri get api => Uri.parse("$baseUri/api/v1");
+
+  Uri get token => Uri.parse("$baseUri/oauth/token");
 }
