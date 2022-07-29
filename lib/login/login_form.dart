@@ -1,3 +1,4 @@
+import 'package:fireapp/common/validation_error.dart';
 import 'package:fireapp/login/bloc/login_bloc.dart';
 import 'package:fireapp/login/bloc/login_event.dart';
 import 'package:fireapp/login/bloc/login_state.dart';
@@ -49,6 +50,24 @@ class _LoginInput extends StatelessWidget {
     required this.type,
   }) : super(key: key);
 
+  String? _getError(LoginState state) {
+    final ValidationError? error;
+    switch (type) {
+      case _LoginInputType.email:
+        error = state.email.error;
+        break;
+      case _LoginInputType.password:
+        error = state.password.error;
+        break;
+      default:
+        return null;
+    }
+    if (error != null && !state.status.isPure) {
+      return error.toString();
+    }
+    return null;
+  }
+
   final String hintText;
   final _LoginInputType type;
 
@@ -59,10 +78,8 @@ class _LoginInput extends StatelessWidget {
         switch (type) {
           case _LoginInputType.email:
             return previous.email != current.email;
-            break;
           case _LoginInputType.password:
             return previous.password != current.password;
-            break;
           default:
             return false;
         }
@@ -91,6 +108,7 @@ class _LoginInput extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: hintText,
                 border: InputBorder.none,
+                errorText: _getError(state),
               ),
               obscureText: type == _LoginInputType.password,
             ),

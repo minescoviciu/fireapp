@@ -1,15 +1,11 @@
+import 'package:fireapp/common/validation_error.dart';
 import 'package:formz/formz.dart';
 
-enum PasswordValidationError {
-  empty,
-  toShort,
-}
+class PasswordValidationError extends ValidationError {
+  static var empty = const PasswordValidationError('Password is required');
+  static var toShort = const PasswordValidationError('Password is to short');
 
-class PasswordErrorStrings {
-  static var errors = {
-    PasswordValidationError.empty: 'Password is required',
-    PasswordValidationError.toShort: 'Password is to short',
-  };
+  const PasswordValidationError(String errorMsg) : super(errorMsg);
 }
 
 class Password extends FormzInput<String, PasswordValidationError> {
@@ -17,11 +13,11 @@ class Password extends FormzInput<String, PasswordValidationError> {
   const Password.dirty([String value = '']) : super.dirty(value);
 
   @override
-  PasswordValidationError? validator(String? password) {
-    if (password!.isEmpty) {
+  PasswordValidationError? validator(String? value) {
+    if (value!.isEmpty) {
       return PasswordValidationError.empty;
     }
-    if (password.length < 6) {
+    if (value.length < 6) {
       return PasswordValidationError.toShort;
     }
     return null;

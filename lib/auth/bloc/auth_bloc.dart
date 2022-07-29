@@ -31,17 +31,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     switch (event.status) {
       case AuthStatus.unknown:
         return emit(const AuthState.unauthenticated());
-        break;
       case AuthStatus.unauthenticated:
         return emit(const AuthState.unauthenticated());
-        break;
       case AuthStatus.authenticated:
         final user = await _tryGetUser();
         if (user == null) {
           return emit(const AuthState.unauthenticated());
         }
         return emit(AuthState.authenticated(user));
-        break;
     }
   }
 
