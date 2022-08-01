@@ -17,6 +17,7 @@ dependencies:
   freezed_annotation: ^0.14.0
   flutter_bloc: ^8.0.1
   formz: ^0.4.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   build_runner: ^1.11.0

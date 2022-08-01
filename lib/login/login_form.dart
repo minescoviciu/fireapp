@@ -63,7 +63,7 @@ class _LoginInput extends StatelessWidget {
         return null;
     }
     if (error != null && !state.status.isPure) {
-      return error.toString();
+      return error.msg();
     }
     return null;
   }

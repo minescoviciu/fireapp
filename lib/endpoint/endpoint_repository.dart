@@ -1,19 +1,33 @@
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
-enum EndpointStatus { unknown, known }
+import './models/endpoint.dart';
 
 class EndpointRepository {
-  final _controller = StreamController<EndpointStatus>();
+  final _controller = StreamController<Endpoint>();
 
-  Stream<EndpointStatus> get status async* {
-    yield EndpointStatus.unknown;
+  static const String endpointKey = '__endpoint_base__';
+
+  Stream<Endpoint> get endpoint async* {
+    yield const Endpoint('demo');
     yield* _controller.stream;
   }
 
-  Future<void> readEndpoint() async {
-    await Future.delayed(
-      Duration(microseconds: 500),
-      () => _controller.add(EndpointStatus.known),
-    );
+  Future<Endpoint> readEndpoint() async {
+    final pref = await SharedPreferences.getInstance();
+    final base = pref.getString(endpointKey);
+    Endpoint endpoint;
+    if (base == null) {
+      endpoint = const Endpoint();
+    } else {
+      endpoint = Endpoint(base);
+    }
+    _controller.add(endpoint);
+    return endpoint;
+  }
+
+  Future<void> writeEndpoint(String base) async {
+    final pref = await SharedPreferences.getInstance();
+    pref.setString(endpointKey, base);
   }
 }

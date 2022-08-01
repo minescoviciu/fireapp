@@ -3,8 +3,7 @@ abstract class ValidationError {
 
   const ValidationError(String errorMsg) : _errorMsg = errorMsg;
 
-  @override
-  String toString() {
+  String msg() {
     return _errorMsg;
   }
 }

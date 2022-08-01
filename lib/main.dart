@@ -1,5 +1,6 @@
 import 'package:fireapp/auth/auth_repository.dart';
 import 'package:fireapp/auth/bloc/auth_state.dart';
+import 'package:fireapp/endpoint/endpoint_repository.dart';
 import 'package:fireapp/login/login_screen.dart';
 import 'package:fireapp/dashboard/dashboard_screen.dart';
 import 'package:fireapp/user/user_repository.dart';
@@ -10,19 +11,36 @@ import 'auth/bloc/auth_bloc.dart';
 import 'splash/splash_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  final EndpointRepository endpointRepository = EndpointRepository();
+  final AuthRepository authRepository = AuthRepository(
+    endpointRepository: endpointRepository,
+  );
+  runApp(MyApp(
+    endpointRepository: endpointRepository,
+    authRepository: authRepository,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  MyApp({
+    Key? key,
+    required EndpointRepository endpointRepository,
+    required AuthRepository authRepository,
+  })  : _endpointRepository = endpointRepository,
+        _authRepository = authRepository,
+        super(key: key);
 
-  final AuthRepository _authRepository = AuthRepository();
+  late final AuthRepository _authRepository;
+  final EndpointRepository _endpointRepository;
   final UserRepository _userRepository = UserRepository();
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: _authRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(value: _authRepository),
+        RepositoryProvider.value(value: _endpointRepository),
+      ],
       child: BlocProvider(
         create: (_) => AuthBloc(
           authRepository: _authRepository,

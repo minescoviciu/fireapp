@@ -1,8 +1,11 @@
+import 'package:fireapp/common/validation_error.dart';
 import 'package:formz/formz.dart';
 
-enum EndpointInputValidationError {
-  empty,
-  notAnUrl,
+class EndpointInputValidationError extends ValidationError {
+  static var empty = const EndpointInputValidationError('Endpoint is empty');
+  static var notAnUrl = const EndpointInputValidationError('Not a valid URL');
+
+  const EndpointInputValidationError(String errorMsg) : super(errorMsg);
 }
 
 class EndpointInput extends FormzInput<String, EndpointInputValidationError> {

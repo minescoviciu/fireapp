@@ -16,14 +16,18 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$EndpointEventTearOff {
   const _$EndpointEventTearOff();
 
-  _EndpointChanged endpointChanged(String endpoint) {
-    return _EndpointChanged(
-      endpoint,
+  EndpointInputChanged endpointInputChanged(String endpointInput) {
+    return EndpointInputChanged(
+      endpointInput,
     );
   }
 
-  _EndpointSubmitted endpointSubmitted() {
-    return const _EndpointSubmitted();
+  EndpointInputSubmitted endpointInputSubmitted() {
+    return const EndpointInputSubmitted();
+  }
+
+  EndpointGet endpointGet() {
+    return const EndpointGet();
   }
 }
 
@@ -34,27 +38,32 @@ const $EndpointEvent = _$EndpointEventTearOff();
 mixin _$EndpointEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String endpoint) endpointChanged,
-    required TResult Function() endpointSubmitted,
+    required TResult Function(String endpointInput) endpointInputChanged,
+    required TResult Function() endpointInputSubmitted,
+    required TResult Function() endpointGet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String endpoint)? endpointChanged,
-    TResult Function()? endpointSubmitted,
+    TResult Function(String endpointInput)? endpointInputChanged,
+    TResult Function()? endpointInputSubmitted,
+    TResult Function()? endpointGet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_EndpointChanged value) endpointChanged,
-    required TResult Function(_EndpointSubmitted value) endpointSubmitted,
+    required TResult Function(EndpointInputChanged value) endpointInputChanged,
+    required TResult Function(EndpointInputSubmitted value)
+        endpointInputSubmitted,
+    required TResult Function(EndpointGet value) endpointGet,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EndpointChanged value)? endpointChanged,
-    TResult Function(_EndpointSubmitted value)? endpointSubmitted,
+    TResult Function(EndpointInputChanged value)? endpointInputChanged,
+    TResult Function(EndpointInputSubmitted value)? endpointInputSubmitted,
+    TResult Function(EndpointGet value)? endpointGet,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,85 +87,88 @@ class _$EndpointEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$EndpointChangedCopyWith<$Res> {
-  factory _$EndpointChangedCopyWith(
-          _EndpointChanged value, $Res Function(_EndpointChanged) then) =
-      __$EndpointChangedCopyWithImpl<$Res>;
-  $Res call({String endpoint});
+abstract class $EndpointInputChangedCopyWith<$Res> {
+  factory $EndpointInputChangedCopyWith(EndpointInputChanged value,
+          $Res Function(EndpointInputChanged) then) =
+      _$EndpointInputChangedCopyWithImpl<$Res>;
+  $Res call({String endpointInput});
 }
 
 /// @nodoc
-class __$EndpointChangedCopyWithImpl<$Res>
+class _$EndpointInputChangedCopyWithImpl<$Res>
     extends _$EndpointEventCopyWithImpl<$Res>
-    implements _$EndpointChangedCopyWith<$Res> {
-  __$EndpointChangedCopyWithImpl(
-      _EndpointChanged _value, $Res Function(_EndpointChanged) _then)
-      : super(_value, (v) => _then(v as _EndpointChanged));
+    implements $EndpointInputChangedCopyWith<$Res> {
+  _$EndpointInputChangedCopyWithImpl(
+      EndpointInputChanged _value, $Res Function(EndpointInputChanged) _then)
+      : super(_value, (v) => _then(v as EndpointInputChanged));
 
   @override
-  _EndpointChanged get _value => super._value as _EndpointChanged;
+  EndpointInputChanged get _value => super._value as EndpointInputChanged;
 
   @override
   $Res call({
-    Object? endpoint = freezed,
+    Object? endpointInput = freezed,
   }) {
-    return _then(_EndpointChanged(
-      endpoint == freezed
-          ? _value.endpoint
-          : endpoint // ignore: cast_nullable_to_non_nullable
+    return _then(EndpointInputChanged(
+      endpointInput == freezed
+          ? _value.endpointInput
+          : endpointInput // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
 /// @nodoc
-class _$_EndpointChanged implements _EndpointChanged {
-  const _$_EndpointChanged(this.endpoint);
+class _$EndpointInputChanged implements EndpointInputChanged {
+  const _$EndpointInputChanged(this.endpointInput);
 
   @override
-  final String endpoint;
+  final String endpointInput;
 
   @override
   String toString() {
-    return 'EndpointEvent.endpointChanged(endpoint: $endpoint)';
+    return 'EndpointEvent.endpointInputChanged(endpointInput: $endpointInput)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EndpointChanged &&
-            (identical(other.endpoint, endpoint) ||
+        (other is EndpointInputChanged &&
+            (identical(other.endpointInput, endpointInput) ||
                 const DeepCollectionEquality()
-                    .equals(other.endpoint, endpoint)));
+                    .equals(other.endpointInput, endpointInput)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(endpoint);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(endpointInput);
 
   @JsonKey(ignore: true)
   @override
-  _$EndpointChangedCopyWith<_EndpointChanged> get copyWith =>
-      __$EndpointChangedCopyWithImpl<_EndpointChanged>(this, _$identity);
+  $EndpointInputChangedCopyWith<EndpointInputChanged> get copyWith =>
+      _$EndpointInputChangedCopyWithImpl<EndpointInputChanged>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String endpoint) endpointChanged,
-    required TResult Function() endpointSubmitted,
+    required TResult Function(String endpointInput) endpointInputChanged,
+    required TResult Function() endpointInputSubmitted,
+    required TResult Function() endpointGet,
   }) {
-    return endpointChanged(endpoint);
+    return endpointInputChanged(endpointInput);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String endpoint)? endpointChanged,
-    TResult Function()? endpointSubmitted,
+    TResult Function(String endpointInput)? endpointInputChanged,
+    TResult Function()? endpointInputSubmitted,
+    TResult Function()? endpointGet,
     required TResult orElse(),
   }) {
-    if (endpointChanged != null) {
-      return endpointChanged(endpoint);
+    if (endpointInputChanged != null) {
+      return endpointInputChanged(endpointInput);
     }
     return orElse();
   }
@@ -164,66 +176,70 @@ class _$_EndpointChanged implements _EndpointChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_EndpointChanged value) endpointChanged,
-    required TResult Function(_EndpointSubmitted value) endpointSubmitted,
+    required TResult Function(EndpointInputChanged value) endpointInputChanged,
+    required TResult Function(EndpointInputSubmitted value)
+        endpointInputSubmitted,
+    required TResult Function(EndpointGet value) endpointGet,
   }) {
-    return endpointChanged(this);
+    return endpointInputChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EndpointChanged value)? endpointChanged,
-    TResult Function(_EndpointSubmitted value)? endpointSubmitted,
+    TResult Function(EndpointInputChanged value)? endpointInputChanged,
+    TResult Function(EndpointInputSubmitted value)? endpointInputSubmitted,
+    TResult Function(EndpointGet value)? endpointGet,
     required TResult orElse(),
   }) {
-    if (endpointChanged != null) {
-      return endpointChanged(this);
+    if (endpointInputChanged != null) {
+      return endpointInputChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class _EndpointChanged implements EndpointEvent {
-  const factory _EndpointChanged(String endpoint) = _$_EndpointChanged;
+abstract class EndpointInputChanged implements EndpointEvent {
+  const factory EndpointInputChanged(String endpointInput) =
+      _$EndpointInputChanged;
 
-  String get endpoint => throw _privateConstructorUsedError;
+  String get endpointInput => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$EndpointChangedCopyWith<_EndpointChanged> get copyWith =>
+  $EndpointInputChangedCopyWith<EndpointInputChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$EndpointSubmittedCopyWith<$Res> {
-  factory _$EndpointSubmittedCopyWith(
-          _EndpointSubmitted value, $Res Function(_EndpointSubmitted) then) =
-      __$EndpointSubmittedCopyWithImpl<$Res>;
+abstract class $EndpointInputSubmittedCopyWith<$Res> {
+  factory $EndpointInputSubmittedCopyWith(EndpointInputSubmitted value,
+          $Res Function(EndpointInputSubmitted) then) =
+      _$EndpointInputSubmittedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$EndpointSubmittedCopyWithImpl<$Res>
+class _$EndpointInputSubmittedCopyWithImpl<$Res>
     extends _$EndpointEventCopyWithImpl<$Res>
-    implements _$EndpointSubmittedCopyWith<$Res> {
-  __$EndpointSubmittedCopyWithImpl(
-      _EndpointSubmitted _value, $Res Function(_EndpointSubmitted) _then)
-      : super(_value, (v) => _then(v as _EndpointSubmitted));
+    implements $EndpointInputSubmittedCopyWith<$Res> {
+  _$EndpointInputSubmittedCopyWithImpl(EndpointInputSubmitted _value,
+      $Res Function(EndpointInputSubmitted) _then)
+      : super(_value, (v) => _then(v as EndpointInputSubmitted));
 
   @override
-  _EndpointSubmitted get _value => super._value as _EndpointSubmitted;
+  EndpointInputSubmitted get _value => super._value as EndpointInputSubmitted;
 }
 
 /// @nodoc
-class _$_EndpointSubmitted implements _EndpointSubmitted {
-  const _$_EndpointSubmitted();
+class _$EndpointInputSubmitted implements EndpointInputSubmitted {
+  const _$EndpointInputSubmitted();
 
   @override
   String toString() {
-    return 'EndpointEvent.endpointSubmitted()';
+    return 'EndpointEvent.endpointInputSubmitted()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _EndpointSubmitted);
+    return identical(this, other) || (other is EndpointInputSubmitted);
   }
 
   @override
@@ -232,21 +248,23 @@ class _$_EndpointSubmitted implements _EndpointSubmitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String endpoint) endpointChanged,
-    required TResult Function() endpointSubmitted,
+    required TResult Function(String endpointInput) endpointInputChanged,
+    required TResult Function() endpointInputSubmitted,
+    required TResult Function() endpointGet,
   }) {
-    return endpointSubmitted();
+    return endpointInputSubmitted();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String endpoint)? endpointChanged,
-    TResult Function()? endpointSubmitted,
+    TResult Function(String endpointInput)? endpointInputChanged,
+    TResult Function()? endpointInputSubmitted,
+    TResult Function()? endpointGet,
     required TResult orElse(),
   }) {
-    if (endpointSubmitted != null) {
-      return endpointSubmitted();
+    if (endpointInputSubmitted != null) {
+      return endpointInputSubmitted();
     }
     return orElse();
   }
@@ -254,26 +272,118 @@ class _$_EndpointSubmitted implements _EndpointSubmitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_EndpointChanged value) endpointChanged,
-    required TResult Function(_EndpointSubmitted value) endpointSubmitted,
+    required TResult Function(EndpointInputChanged value) endpointInputChanged,
+    required TResult Function(EndpointInputSubmitted value)
+        endpointInputSubmitted,
+    required TResult Function(EndpointGet value) endpointGet,
   }) {
-    return endpointSubmitted(this);
+    return endpointInputSubmitted(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EndpointChanged value)? endpointChanged,
-    TResult Function(_EndpointSubmitted value)? endpointSubmitted,
+    TResult Function(EndpointInputChanged value)? endpointInputChanged,
+    TResult Function(EndpointInputSubmitted value)? endpointInputSubmitted,
+    TResult Function(EndpointGet value)? endpointGet,
     required TResult orElse(),
   }) {
-    if (endpointSubmitted != null) {
-      return endpointSubmitted(this);
+    if (endpointInputSubmitted != null) {
+      return endpointInputSubmitted(this);
     }
     return orElse();
   }
 }
 
-abstract class _EndpointSubmitted implements EndpointEvent {
-  const factory _EndpointSubmitted() = _$_EndpointSubmitted;
+abstract class EndpointInputSubmitted implements EndpointEvent {
+  const factory EndpointInputSubmitted() = _$EndpointInputSubmitted;
+}
+
+/// @nodoc
+abstract class $EndpointGetCopyWith<$Res> {
+  factory $EndpointGetCopyWith(
+          EndpointGet value, $Res Function(EndpointGet) then) =
+      _$EndpointGetCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EndpointGetCopyWithImpl<$Res> extends _$EndpointEventCopyWithImpl<$Res>
+    implements $EndpointGetCopyWith<$Res> {
+  _$EndpointGetCopyWithImpl(
+      EndpointGet _value, $Res Function(EndpointGet) _then)
+      : super(_value, (v) => _then(v as EndpointGet));
+
+  @override
+  EndpointGet get _value => super._value as EndpointGet;
+}
+
+/// @nodoc
+class _$EndpointGet implements EndpointGet {
+  const _$EndpointGet();
+
+  @override
+  String toString() {
+    return 'EndpointEvent.endpointGet()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is EndpointGet);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String endpointInput) endpointInputChanged,
+    required TResult Function() endpointInputSubmitted,
+    required TResult Function() endpointGet,
+  }) {
+    return endpointGet();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String endpointInput)? endpointInputChanged,
+    TResult Function()? endpointInputSubmitted,
+    TResult Function()? endpointGet,
+    required TResult orElse(),
+  }) {
+    if (endpointGet != null) {
+      return endpointGet();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EndpointInputChanged value) endpointInputChanged,
+    required TResult Function(EndpointInputSubmitted value)
+        endpointInputSubmitted,
+    required TResult Function(EndpointGet value) endpointGet,
+  }) {
+    return endpointGet(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EndpointInputChanged value)? endpointInputChanged,
+    TResult Function(EndpointInputSubmitted value)? endpointInputSubmitted,
+    TResult Function(EndpointGet value)? endpointGet,
+    required TResult orElse(),
+  }) {
+    if (endpointGet != null) {
+      return endpointGet(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EndpointGet implements EndpointEvent {
+  const factory EndpointGet() = _$EndpointGet;
 }

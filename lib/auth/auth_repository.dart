@@ -1,8 +1,15 @@
 import 'dart:async';
 
+import 'package:fireapp/endpoint/endpoint_repository.dart';
+
 enum AuthStatus { unknown, authenticated, unauthenticated }
 
 class AuthRepository {
+  AuthRepository({required EndpointRepository endpointRepository})
+      : _endpointRepository = endpointRepository;
+
+  final EndpointRepository _endpointRepository;
+
   final _controller = StreamController<AuthStatus>();
 
   Stream<AuthStatus> get status async* {
